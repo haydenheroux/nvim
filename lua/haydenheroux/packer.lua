@@ -21,6 +21,7 @@ use {
 }
 
 use 'tpope/vim-fugitive'
+use 'tpope/vim-commentary'
 
 use {
   'VonHeikemen/lsp-zero.nvim',
