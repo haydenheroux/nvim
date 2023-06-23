@@ -49,4 +49,6 @@ use {
     }
 }
 
+use 'mfussenegger/nvim-jdtls'
+
 end)
