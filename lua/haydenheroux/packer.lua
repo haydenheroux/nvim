@@ -15,8 +15,8 @@ use {
 	as = "dracula",
 }
 
-use { 
-	'nvim-treesitter/nvim-treesitter', 
+use {
+	'nvim-treesitter/nvim-treesitter',
 	run = ':TSUpdate'
 }
 
@@ -27,18 +27,18 @@ use {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v2.x',
   requires = {
-    {'neovim/nvim-lspconfig'},            
-    {                                      
+    {'neovim/nvim-lspconfig'},
+    {
       'williamboman/mason.nvim',
       run = function()
         pcall(vim.cmd, 'MasonUpdate')
       end,
     },
-    {'williamboman/mason-lspconfig.nvim'}, 
+    {'williamboman/mason-lspconfig.nvim'},
 
-    {'hrsh7th/nvim-cmp'},     
-    {'hrsh7th/cmp-nvim-lsp'}, 
-    {'L3MON4D3/LuaSnip'},     
+    {'hrsh7th/nvim-cmp'},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'L3MON4D3/LuaSnip'},
 	{ "SirVer/ultisnips"},
 	{ "honza/vim-snippets"},
   }
@@ -52,5 +52,7 @@ use {
 }
 
 use 'mfussenegger/nvim-jdtls'
+
+use 'nathom/filetype.nvim'
 
 end)
