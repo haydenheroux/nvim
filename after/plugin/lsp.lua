@@ -7,7 +7,7 @@ lsp.on_attach(function(client, bufnr)
 
 	vim.keymap.set("n", "<leader>[", vim.diagnostic.goto_next, opts)
 	vim.keymap.set("n", "<leader>]", vim.diagnostic.goto_prev, opts)
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+	vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts)
 	vim.keymap.set("n", "<leader>d", builtin.lsp_definitions, opts)
 	vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
 	vim.keymap.set("n", "<leader>i", builtin.lsp_implementations, opts)
