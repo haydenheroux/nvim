@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>d", builtin.lsp_definitions, opts)
         vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
         vim.keymap.set("n", "<leader>i", builtin.lsp_implementations, opts)
-        vim.keymap.set("n", "<leader>r", builtin.lsp_references, opts)
+        vim.keymap.set("n", "<leader>re", builtin.lsp_references, opts)
         vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, opts)
     end
 })
