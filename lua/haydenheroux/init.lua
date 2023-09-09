@@ -1,3 +1,3 @@
 require("haydenheroux.map")
-require("haydenheroux.packer")
+require("haydenheroux.plugins")
 require("haydenheroux.set")
