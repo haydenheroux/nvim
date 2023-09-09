@@ -46,7 +46,7 @@ require('lazy').setup {
 
     {
         'mfussenegger/nvim-jdtls',
-        ft = { "java" }
+        ft = { 'java' }
     },
 
     {
@@ -96,4 +96,15 @@ require('lazy').setup {
     },
 
     'nathom/filetype.nvim',
+
+    {
+        'sdiehl/vim-ormolu',
+        config = function()
+            vim.cmd [[
+                let g:ormolu_command='fourmolu'
+                let g:ormolu_options=['--no-cabal']
+            ]]
+        end,
+        ft = { 'haskell' }
+    }
 }
