@@ -95,8 +95,6 @@ require('lazy').setup {
         end
     },
 
-    'nathom/filetype.nvim',
-
     {
         'sdiehl/vim-ormolu',
         config = function()
