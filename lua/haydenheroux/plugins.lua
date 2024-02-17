@@ -120,5 +120,14 @@ require('lazy').setup {
     {
         'vimwiki/vimwiki',
         event = 'VeryLazy'
+    },
+
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        config = function()
+            require('haydenheroux.config.harpoon')
+        end,
+        dependencies = { "nvim-lua/plenary.nvim" }
     }
 }
