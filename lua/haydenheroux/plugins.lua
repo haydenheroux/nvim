@@ -41,13 +41,23 @@ require('lazy').setup {
         end,
     },
 
-    'williamboman/mason.nvim',
+    {
+        'williamboman/mason.nvim',
+        opts = {
+            ensure_installed = {
+                'gopls',
+                'lua-language-server',
+            }
+        }
+    },
     'williamboman/mason-lspconfig.nvim',
 
     {
         'mfussenegger/nvim-jdtls',
         ft = { 'java' }
     },
+
+    'MunifTanjim/prettier.nvim',
 
     {
         'nvim-treesitter/nvim-treesitter',
@@ -98,11 +108,17 @@ require('lazy').setup {
     {
         'sdiehl/vim-ormolu',
         config = function()
+            -- TODO use Lua
             vim.cmd [[
                 let g:ormolu_command='fourmolu'
                 let g:ormolu_options=['--no-cabal']
             ]]
         end,
         ft = { 'haskell' }
+    },
+
+    {
+        'vimwiki/vimwiki',
+        event = 'VeryLazy'
     }
 }

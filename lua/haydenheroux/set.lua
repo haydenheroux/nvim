@@ -16,5 +16,7 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
+vim.opt.mouse = ""
+
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 vim.cmd [[autocmd BufWritePost * GitGutter ]]
