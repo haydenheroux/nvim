@@ -56,11 +56,11 @@ cmp.setup {
         ["<C-e>"] = cmp.mapping.abort(),
     },
     sources = {
-        { name = "nvim_lsp" },                    -- For nvim-lsp
-        { name = "vsnip" },                       -- For `vsnip` users.
-        { name = "path" },                        -- for path completion
-        { name = "buffer",  keyword_length = 2 }, -- for buffer word completion
-        { name = "emoji",   insert = true },      -- emoji completion
+        { name = "nvim_lsp" },               -- For nvim-lsp
+        { name = "vsnip" },                  -- For `vsnip` users.
+        { name = "path" },                   -- for path completion
+        -- { name = "buffer",  keyword_length = 2 }, -- for buffer word completion
+        { name = "emoji",   insert = true }, -- emoji completion
     },
     completion = {
         keyword_length = 1,

@@ -86,7 +86,9 @@ require('lazy').setup {
     },
 
     'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
+    { 'nvim-telescope/telescope.nvim', config = function()
+        require('haydenheroux.config.telescope')
+    end },
 
     { 'nvim-tree/nvim-web-devicons', event = 'VeryLazy' },
 
@@ -100,9 +102,10 @@ require('lazy').setup {
 
     {
         'Mofiqul/dracula.nvim',
-        config = function()
-            require('haydenheroux.config.colorscheme')
-        end
+    },
+
+    {
+        "catppuccin/nvim",
     },
 
     {
@@ -129,5 +132,14 @@ require('lazy').setup {
             require('haydenheroux.config.harpoon')
         end,
         dependencies = { "nvim-lua/plenary.nvim" }
+    },
+
+    {
+        "lervag/vimtex",
+        lazy = false, -- we don't want to lazy load VimTeX
+        -- tag = "v2.15", -- uncomment to pin to a specific release
+        init = function()
+            -- VimTeX configuration goes here
+        end
     }
 }

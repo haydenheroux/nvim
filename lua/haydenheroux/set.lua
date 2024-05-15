@@ -9,6 +9,10 @@ vim.opt.expandtab = true
 vim.opt.list = true
 vim.opt.listchars = { tab = ">-" }
 
+vim.opt.title = true
+vim.opt.titlelen = 0
+vim.opt.titlestring = 'nvim %{expand("%:p")}'
+
 vim.opt.wrap = false
 
 vim.opt.hlsearch = false
@@ -20,3 +24,5 @@ vim.opt.mouse = ""
 
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 vim.cmd [[autocmd BufWritePost * GitGutter ]]
+
+vim.cmd.colorscheme("dracula")
