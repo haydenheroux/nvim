@@ -3,6 +3,7 @@
   "coq.artifacts": { "branch": "artifacts", "commit": "9c5067a471322c6bb866545e88e5b28c82511865" },
   "coq_nvim": { "branch": "coq", "commit": "bdcc65c4636a8894ad4c66aec3192d9da4ee760f" },
   "formatter.nvim": { "branch": "master", "commit": "ad246d34ce7a32f752071ed81b09b94e6b127fad" },
+  "harpoon": { "branch": "harpoon2", "commit": "0378a6c428a0bed6a2781d459d7943843f374bce" },
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
   "lualine.nvim": { "branch": "master", "commit": "544dd1583f9bb27b393f598475c89809c4d5e86b" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "fd69d5c782a28420d51b648a3d7fe88df569d391" },
