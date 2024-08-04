@@ -22,3 +22,4 @@ Features from [How to Do 90% of What Plugins Do (With Just Vim)](https://www.you
 
 ## look
  - Colorscheme via [catppuccin/nvim](https://github.com/catppuccin/nvim)
+ - Statusline via [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
