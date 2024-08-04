@@ -45,10 +45,10 @@ return {
 					vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, options)
 					vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, options)
 
-					-- local builtin = require("telescope.builtin")
-					-- vim.keymap.set("n", "<leader>i", builtin.lsp_implementations, opts)
-					-- vim.keymap.set("n", "<leader>rf", builtin.lsp_references, opts)
-					-- vim.keymap.set("n", "<leader>d", builtin.lsp_definitions, opts)
+					local builtin = require("telescope.builtin")
+					vim.keymap.set("n", "<leader>i", builtin.lsp_implementations, options)
+					vim.keymap.set("n", "<leader>rf", builtin.lsp_references, options)
+					vim.keymap.set("n", "<leader>d", builtin.lsp_definitions, options)
 				end,
 			})
 		end,
