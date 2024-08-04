@@ -6,7 +6,14 @@ return {
 			"mhartington/formatter.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"williamboman/mason.nvim",
+			{ "ms-jpq/coq_nvim", branch = "coq" },
+			{ "ms-jpq/coq.artifacts", branch = "artifacts" },
 		},
+		init = function()
+			vim.g.coq_settings = {
+				auto_start = "shut-up",
+			}
+		end,
 		config = function()
 			local lspconfig = require("lspconfig")
 			local masonlsp = require("mason-lspconfig")
@@ -36,6 +43,7 @@ return {
 			end
 
 			vim.api.nvim_create_autocmd("LspAttach", {
+				---@diagnostic disable-next-line: unused-local
 				callback = function(event)
 					local options = { buffer = true, remap = false }
 
