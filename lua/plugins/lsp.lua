@@ -12,9 +12,9 @@ return {
 		init = function()
 			vim.g.coq_settings = {
 				auto_start = "shut-up",
-                keymap = {
-                    jump_to_mark = "",
-                },
+				keymap = {
+					jump_to_mark = "",
+				},
 			}
 		end,
 		config = function()
@@ -25,6 +25,9 @@ return {
 
 			require("formatter").setup({
 				filetype = {
+					cpp = {
+						require("formatter.filetypes.cpp").clangformat,
+					},
 					lua = {
 						require("formatter.filetypes.lua").stylua,
 					},
