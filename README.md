@@ -6,7 +6,6 @@ Neovim configuration.
 
 Based on [ThePrimeagen's video](https://youtu.be/w7i4amO_zaE):
  - Plugins via [folke/lazy.nvim](https://github.com/folke/lazy.nvim)
- - Colorscheme via [catppuccin/nvim](https://github.com/catppuccin/nvim)
  - Tree-sitter via [nvim-treesitter/nvim-treesitter](nvim-treesitter/nvim-treesitter)
  - Git integration via [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
  - LSP management via [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
@@ -21,3 +20,5 @@ Features from [How to Do 90% of What Plugins Do (With Just Vim)](https://www.you
  - Snippets via [ms-jpq/coq_nvim](https://github.com/ms-jpq/coq_nvim)
  - Build integration via [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint) and [mhartington/formatter.nvim](https://github.com/mhartington/formatter.nvim)
 
+## look
+ - Colorscheme via [catppuccin/nvim](https://github.com/catppuccin/nvim)
