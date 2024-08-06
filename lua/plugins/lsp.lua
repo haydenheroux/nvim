@@ -21,6 +21,9 @@ return {
 					lua = {
 						require("formatter.filetypes.lua").stylua,
 					},
+					python = {
+						require("formatter.filetypes.python").black,
+					},
 				},
 			})
 
