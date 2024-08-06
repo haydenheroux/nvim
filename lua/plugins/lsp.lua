@@ -18,6 +18,9 @@ return {
 					cpp = {
 						require("formatter.filetypes.cpp").clangformat,
 					},
+					go = {
+						require("formatter.filetypes.go").gofmt,
+					},
 					lua = {
 						require("formatter.filetypes.lua").stylua,
 					},
