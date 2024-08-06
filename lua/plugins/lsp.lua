@@ -34,8 +34,12 @@ return {
 
 			masonlsp.setup()
 
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 			for _, name in ipairs(masonlsp.get_installed_servers()) do
-				lspconfig[name].setup({})
+				lspconfig[name].setup({
+					capabilities = capabilities,
+				})
 			end
 
 			vim.api.nvim_create_autocmd("LspAttach", {
