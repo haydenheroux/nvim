@@ -6,18 +6,7 @@ return {
 			"mhartington/formatter.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"williamboman/mason.nvim",
-			{ "ms-jpq/coq_nvim", branch = "coq" },
-			{ "ms-jpq/coq.artifacts", branch = "artifacts" },
 		},
-		init = function()
-			vim.g.coq_settings = {
-				auto_start = "shut-up",
-				keymap = {
-					jump_to_mark = "<C-space>",
-					manual_complete = "",
-				},
-			}
-		end,
 		config = function()
 			local lspconfig = require("lspconfig")
 			local masonlsp = require("mason-lspconfig")
@@ -45,10 +34,8 @@ return {
 
 			masonlsp.setup()
 
-			local coq = require("coq")
-
 			for _, name in ipairs(masonlsp.get_installed_servers()) do
-				lspconfig[name].setup(coq.lsp_ensure_capabilities({}))
+				lspconfig[name].setup({})
 			end
 
 			vim.api.nvim_create_autocmd("LspAttach", {
