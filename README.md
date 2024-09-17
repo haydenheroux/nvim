@@ -23,7 +23,10 @@ Neovim configuration.
 | [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) | Git integration |
 | [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) | LSP configuration |
 | [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) | LSP installation |
+| [lervag/vimtex](https://github.com/lervag/vimtex) | LaTeX filetype plugin | 
 
 ## inspiration
  - [0 to LSP : Neovim RC From Scratch](https://youtu.be/w7i4amO_zaE)
  - [How to Do 90% of What Plugins Do (With Just Vim)](https://www.youtube.com/watch?v=XA2WjJbmmoM)
+ - [A guide to supercharged mathematical typesetting](https://ejmastnak.com/tutorials/vim-latex/intro/)
+
