@@ -13,6 +13,7 @@ Neovim configuration.
 | [folke/lazy.nvim](https://github.com/folke/lazy.nvim) | plugin manager |
 | [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) | LSP completion |
 | [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | completion |
+| [lervag/vimtex](https://github.com/lervag/vimtex) | LaTeX filetype plugin | 
 | [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint) | linter integration |
 | [mhartington/formatter.nvim](https://github.com/mhartington/formatter.nvim) | formatter integration |
 | [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP configuration |
@@ -23,10 +24,8 @@ Neovim configuration.
 | [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) | Git integration |
 | [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) | LSP configuration |
 | [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) | LSP installation |
-| [lervag/vimtex](https://github.com/lervag/vimtex) | LaTeX filetype plugin | 
 
 ## inspiration
  - [0 to LSP : Neovim RC From Scratch](https://youtu.be/w7i4amO_zaE)
- - [How to Do 90% of What Plugins Do (With Just Vim)](https://www.youtube.com/watch?v=XA2WjJbmmoM)
  - [A guide to supercharged mathematical typesetting](https://ejmastnak.com/tutorials/vim-latex/intro/)
-
+ - [How to Do 90% of What Plugins Do (With Just Vim)](https://www.youtube.com/watch?v=XA2WjJbmmoM)
