@@ -33,12 +33,4 @@ return {
 			})
 		end,
 	},
-	{
-		"airblade/vim-gitgutter",
-		config = function()
-			vim.cmd("highlight GitGutterAdd guifg=#a6da95 guibg=#24273a")
-			vim.cmd("highlight GitGutterChange guifg=#7dc4e4 guibg=#24273a")
-			vim.cmd("highlight GitGutterDelete guifg=#ed8796 guibg=#24273a")
-		end,
-	},
 }
