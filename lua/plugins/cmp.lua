@@ -5,6 +5,8 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
+			"kdheepak/cmp-latex-symbols",
+			"micangl/cmp-vimtex",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -65,6 +67,8 @@ return {
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
+					{ name = "latex_symbols" },
+					{ name = "vimtex" },
 				},
 				formatting = {
 					format = function(entry, vim_item)
@@ -75,6 +79,7 @@ return {
 							luasnip = "[LuaSnip]",
 							nvim_lua = "[Lua]",
 							latex_symbols = "[LaTeX]",
+							vimtex = vim_item.menu,
 						})[entry.source.name]
 						return vim_item
 					end,

@@ -13,10 +13,12 @@ Neovim configuration.
 | [folke/lazy.nvim](https://github.com/folke/lazy.nvim) | plugin manager |
 | [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) | LSP completion |
 | [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | completion |
+| [kdheepak/cmp-latex-symbols](https://github.com/kdheepak/cmp-latex-symbols) | LaTeX symbol completion | 
 | [lervag/vimtex](https://github.com/lervag/vimtex) | LaTeX filetype plugin | 
 | [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git integration|
 | [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint) | linter integration |
 | [mhartington/formatter.nvim](https://github.com/mhartington/formatter.nvim) | formatter integration |
+| [micangl/cmp-vimtex](https://github.com/micangl/cmp-vimtex) | LaTeX reference completion |
 | [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP configuration |
 | [nvim-lualine/lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | statusline |
 | [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | fuzzy finder |
