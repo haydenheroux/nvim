@@ -7,6 +7,7 @@ Neovim configuration.
 | plugin | purpose |
 | --- | --- |
 | [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) | snippets |
+| [R-nvim/R.nvim](https://github.com/R-nvim/R.nvim) | R integration |
 | [ThePrimeagen/harpoon](https://github.com/ThePrimeagen/harpoon) | file navigation |
 | [airblade/vim-gitgutter](https://github.com/airblade/vim-gitgutter) | Git signs |
 | [catppuccin/nvim](https://github.com/catppuccin/nvim) | theme |
