@@ -15,6 +15,9 @@ return {
 
 			require("formatter").setup({
 				filetype = {
+					c = {
+						require("formatter.filetypes.cpp").clangformat,
+					},
 					cpp = {
 						require("formatter.filetypes.cpp").clangformat,
 					},
@@ -27,16 +30,17 @@ return {
 					python = {
 						require("formatter.filetypes.python").black,
 					},
+					haskell = {
+						require("formatter.filetypes.haskell").ormolu,
+					},
 				},
 			})
 
-			local augroup = vim.api.nvim_create_augroup
-			local autocmd = vim.api.nvim_create_autocmd
-			augroup("__formatter__", { clear = true })
-			autocmd("BufWritePost", {
-				group = "__formatter__",
-				command = ":FormatWrite",
-			})
+			-- vim.api.nvim_create_augroup("__formatter__", { clear = true })
+			-- vim.api.nvim_create_autocmd("BufWritePost", {
+			-- 	group = "__formatter__",
+			-- 	command = ":FormatWrite",
+			-- })
 
 			masonlsp.setup()
 
@@ -66,5 +70,40 @@ return {
 				end,
 			})
 		end,
+	},
+	{
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+		config = function()
+			local lsp_lines = require("lsp_lines")
+
+			lsp_lines.setup()
+
+			local enable = function()
+				vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
+				lsp_lines_enabled = true
+			end
+
+			local disable = function()
+				vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+				lsp_lines_enabled = false
+			end
+
+			local toggle = function()
+				if lsp_lines_enabled then
+					disable()
+				else
+					enable()
+				end
+			end
+
+			disable()
+
+			vim.keymap.set("", "<leader>;", toggle)
+		end,
+	},
+	{
+		"mrcjkb/haskell-tools.nvim",
+		version = "^4",
+		lazy = false,
 	},
 }
