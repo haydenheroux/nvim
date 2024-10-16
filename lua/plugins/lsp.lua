@@ -7,6 +7,9 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"williamboman/mason.nvim",
 		},
+		opts = {
+			autoformat = false,
+		},
 		config = function()
 			local lspconfig = require("lspconfig")
 			local masonlsp = require("mason-lspconfig")
@@ -46,10 +49,28 @@ return {
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+			local settings = {
+				basedpyright = {
+					basedpyright = {
+						analysis = {
+							-- TODO Sync this between here and the filetype plugin
+							typeCheckingMode = "standard",
+						},
+					},
+				},
+			}
+
 			for _, name in ipairs(masonlsp.get_installed_servers()) do
-				lspconfig[name].setup({
-					capabilities = capabilities,
-				})
+				if settings[name] then
+					lspconfig[name].setup({
+						capabilities = capabilities,
+						settings = settings[name],
+					})
+				else
+					lspconfig[name].setup({
+						capabilities = capabilities,
+					})
+				end
 			end
 
 			vim.api.nvim_create_autocmd("LspAttach", {
