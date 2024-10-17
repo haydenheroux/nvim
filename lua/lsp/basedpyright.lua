@@ -1,40 +1,32 @@
-local on_mode = "strict"
-local off_mode = "standard"
+local standard = "standard"
+local strict = "strict"
 
-local type_checking_mode = off_mode
+local type_checking_mode = standard
 
-local function toggle_type_checking_mode()
-	if type_checking_mode == on_mode then
-		type_checking_mode = off_mode
+local function toggle_type_checking_mode(basedpyright)
+	if type_checking_mode == strict then
+		type_checking_mode = standard
 	else
-		type_checking_mode = on_mode
+		type_checking_mode = strict
 	end
 
-	local new_settings = {
-		basedpyright = {
-			analysis = {
-				typeCheckingMode = type_checking_mode,
-			},
-		},
-	}
+	local settings = basedpyright.config.settings
 
-	-- TODO Hacky way around using buf_notify
-	-- https://github.com/chrisgrieser/.config/blob/306e8ba9774c8277ecc4ed655040e0091ccda50b/nvim/lua/plugins/lsp-servers.lua#L317-L329
-	-- vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = new_settings })
-	require("lspconfig")["basedpyright"].setup({
-		capabilities = require("cmp_nvim_lsp").default_capabilities(),
-		settings = new_settings,
-	})
+    settings.basedpyright.analysis.typeCheckingMode = type_checking_mode
+
+    vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = settings })
 end
 
-returnconfigs.basedpyright = require("lsp.basedpyright") {
-	on_attach = function()
-		vim.keymap.set("n", "<leader>tt", toggle_type_checking_mode)
+return {
+	on_attach = function(basedpyright)
+		vim.keymap.set("n", "<leader>tt", function ()
+		  toggle_type_checking_mode(basedpyright)
+		end)
 	end,
 	settings = {
 		basedpyright = {
 			analysis = {
-				typeCheckingMode = off_mode,
+				typeCheckingMode = standard,
 			},
 		},
 	},
