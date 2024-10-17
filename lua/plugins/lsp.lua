@@ -1,3 +1,47 @@
+local function basedpyright()
+	local on_mode = "strict"
+	local off_mode = "standard"
+
+	local type_checking_mode = off_mode
+
+	local function toggle_type_checking_mode()
+		if type_checking_mode == on_mode then
+			type_checking_mode = off_mode
+		else
+			type_checking_mode = on_mode
+		end
+
+		local new_settings = {
+			basedpyright = {
+				analysis = {
+					typeCheckingMode = type_checking_mode,
+				},
+			},
+		}
+
+		-- TODO Hacky way around using buf_notify
+		-- https://github.com/chrisgrieser/.config/blob/306e8ba9774c8277ecc4ed655040e0091ccda50b/nvim/lua/plugins/lsp-servers.lua#L317-L329
+		-- vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = new_settings })
+		require("lspconfig")["basedpyright"].setup({
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+			settings = new_settings,
+		})
+	end
+
+	return {
+		on_attach = function()
+			vim.keymap.set("n", "<leader>tt", toggle_type_checking_mode)
+		end,
+		settings = {
+			basedpyright = {
+				analysis = {
+					typeCheckingMode = off_mode,
+				},
+			},
+		},
+	}
+end
+
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -50,21 +94,15 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local settings = {
-				basedpyright = {
-					basedpyright = {
-						analysis = {
-							-- TODO Sync this between here and the filetype plugin
-							typeCheckingMode = "standard",
-						},
-					},
-				},
+				basedpyright = basedpyright(),
 			}
 
 			for _, name in ipairs(masonlsp.get_installed_servers()) do
 				if settings[name] then
 					lspconfig[name].setup({
 						capabilities = capabilities,
-						settings = settings[name],
+						on_attach = settings[name].on_attach,
+						settings = settings[name].settings,
 					})
 				else
 					lspconfig[name].setup({
