@@ -50,6 +50,7 @@ return {
 
 			local configs = {
 				basedpyright = require("lsp.basedpyright"),
+				clangd = require("lsp.clangd"),
 			}
 
 			for lsp, config in pairs(configs) do
