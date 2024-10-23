@@ -48,14 +48,13 @@ return {
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            local configs = {
-                basedpyright = require("lsp.basedpyright"),
-            }
-
+			local configs = {
+				basedpyright = require("lsp.basedpyright"),
+			}
 
 			for lsp, config in pairs(configs) do
-                config.capabilities = capabilities
-                lspconfig[lsp].setup(config)
+				config.capabilities = capabilities
+				lspconfig[lsp].setup(config)
 			end
 
 			vim.api.nvim_create_autocmd("LspAttach", {
