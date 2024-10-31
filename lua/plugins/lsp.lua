@@ -8,11 +8,10 @@ return {
 			"williamboman/mason.nvim",
 		},
 		opts = {
-			autoformat = false,
+			autoformat = true,
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
-
 			require("mason").setup()
 
 			require("formatter").setup({
@@ -38,11 +37,11 @@ return {
 				},
 			})
 
-			-- vim.api.nvim_create_augroup("__formatter__", { clear = true })
-			-- vim.api.nvim_create_autocmd("BufWritePost", {
-			-- 	group = "__formatter__",
-			-- 	command = ":FormatWrite",
-			-- })
+			vim.api.nvim_create_augroup("__formatter__", { clear = true })
+			vim.api.nvim_create_autocmd("BufWritePost", {
+				group = "__formatter__",
+				command = ":FormatWrite",
+			})
 
 			require("mason-lspconfig").setup()
 
@@ -51,6 +50,7 @@ return {
 			local configs = {
 				basedpyright = require("lsp.basedpyright"),
 				clangd = require("lsp.clangd"),
+				jdtls = require("lsp.jdtls"),
 			}
 
 			for lsp, config in pairs(configs) do
@@ -65,7 +65,8 @@ return {
 
 					vim.keymap.set("n", "<leader>[", vim.diagnostic.goto_next, options)
 					vim.keymap.set("n", "<leader>]", vim.diagnostic.goto_prev, options)
-					vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, options)
+					vim.keymap.set("n", "<leader>..", vim.lsp.buf.code_action, options)
+					vim.keymap.set("n", "<leader>.f", vim.lsp.buf.format, options)
 					vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, options)
 					vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, options)
 

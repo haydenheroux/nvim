@@ -12,15 +12,15 @@ local function toggle_type_checking_mode(basedpyright)
 
 	local settings = basedpyright.config.settings
 
-    settings.basedpyright.analysis.typeCheckingMode = type_checking_mode
+	settings.basedpyright.analysis.typeCheckingMode = type_checking_mode
 
-    vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = settings })
+	vim.lsp.buf_notify(0, "workspace/didChangeConfiguration", { settings = settings })
 end
 
 return {
 	on_attach = function(basedpyright)
-		vim.keymap.set("n", "<leader>tt", function ()
-		  toggle_type_checking_mode(basedpyright)
+		vim.keymap.set("n", "<leader>tt", function()
+			toggle_type_checking_mode(basedpyright)
 		end)
 	end,
 	settings = {
