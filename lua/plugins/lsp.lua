@@ -51,6 +51,7 @@ return {
 				basedpyright = require("lsp.basedpyright"),
 				clangd = require("lsp.clangd"),
 				jdtls = require("lsp.jdtls"),
+				lua_ls = require("lsp.lua_ls"),
 			}
 
 			for lsp, config in pairs(configs) do
