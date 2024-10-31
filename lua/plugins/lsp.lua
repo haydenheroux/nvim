@@ -81,29 +81,27 @@ return {
 	{
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 		config = function()
-			local lsp_lines = require("lsp_lines")
+			require("lsp_lines").setup()
 
-			lsp_lines.setup()
-
-			local enable = function()
+			local expand = function()
 				vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
-				lsp_lines_enabled = true
+				CONFIG_expand_diagnostics = true
 			end
 
-			local disable = function()
+			local compact = function()
 				vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
-				lsp_lines_enabled = false
+				CONFIG_expand_diagnostics = false
 			end
 
 			local toggle = function()
-				if lsp_lines_enabled then
-					disable()
+				if CONFIG_expand_diagnostics then
+					compact()
 				else
-					enable()
+					expand()
 				end
 			end
 
-			disable()
+			compact()
 
 			vim.keymap.set("", "<leader>;", toggle)
 		end,
