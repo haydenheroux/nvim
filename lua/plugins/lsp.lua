@@ -50,7 +50,6 @@ return {
 			local configs = {
 				basedpyright = require("lsp.basedpyright"),
 				clangd = require("lsp.clangd"),
-				jdtls = require("lsp.jdtls"),
 				lua_ls = require("lsp.lua_ls"),
 			}
 
