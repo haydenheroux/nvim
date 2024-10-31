@@ -50,7 +50,9 @@ return {
 			local configs = {
 				basedpyright = require("lsp.basedpyright"),
 				clangd = require("lsp.clangd"),
+				digestif = require("lsp.digestif"),
 				lua_ls = require("lsp.lua_ls"),
+				r_language_server = require("lsp.r_language_server"),
 			}
 
 			for lsp, config in pairs(configs) do
@@ -110,5 +112,37 @@ return {
 		"mrcjkb/haskell-tools.nvim",
 		version = "^4",
 		lazy = false,
+	},
+	{
+		"R-nvim/R.nvim",
+		config = function()
+			local config = {
+				hook = {
+					on_filetype = function()
+						local tabstop = 2
+						vim.opt.tabstop = tabstop
+						vim.opt.shiftwidth = tabstop
+						vim.opt.softtabstop = tabstop
+						vim.opt.expandtab = true
+						vim.api.nvim_buf_set_keymap(0, "n", "<Enter>", "<Plug>RDSendLine", {})
+						vim.api.nvim_buf_set_keymap(0, "v", "<Enter>", "<Plug>RSendSelection", {})
+					end,
+				},
+				R_args = { "--quiet", "--no-save" },
+			}
+			if vim.env.R_AUTO_START == "true" then
+				config.auto_start = "on startup"
+				config.objbr_auto_start = true
+			end
+			require("r").setup(config)
+		end,
+		lazy = false,
+	},
+	{
+		"lervag/vimtex",
+		lazy = false,
+		init = function()
+			vim.g.vimtex_view_method = "zathura"
+		end,
 	},
 }
