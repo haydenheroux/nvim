@@ -145,4 +145,18 @@ return {
 			vim.g.vimtex_view_method = "zathura"
 		end,
 	},
+	{
+		"scalameta/nvim-metals",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		ft = { "scala", "sbt", "java" },
+		opts = function()
+			local metals_config = require("metals").bare_config()
+			metals_config.on_attach = require("lsp.scala_metals").on_attach
+
+			return metals_config
+		end,
+		config = require("lsp.scala_metals").config,
+	},
 }
