@@ -34,6 +34,9 @@ return {
 					haskell = {
 						require("formatter.filetypes.haskell").ormolu,
 					},
+					tex = {
+						require("formatter.filetypes.tex").latexindent,
+					},
 				},
 			})
 
@@ -41,6 +44,15 @@ return {
 			vim.api.nvim_create_autocmd("BufWritePost", {
 				group = "__formatter__",
 				command = ":FormatWrite",
+			})
+
+			vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
+				callback = function(opts)
+					local ft = vim.bo[opts.buf].filetype
+					if ft == "markdown" or ft == "tex" or ft == "gitcommit" then
+						require("lint").try_lint("write_good")
+					end
+				end,
 			})
 
 			require("mason-lspconfig").setup()
