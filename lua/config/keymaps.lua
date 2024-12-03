@@ -12,8 +12,6 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
-vim.opt.spell = true
-vim.opt.spelllang = "en_us"
 vim.keymap.set("n", "zj", "]s")
 vim.keymap.set("n", "zk", "[s")
 vim.keymap.set("n", "zi", "zg")
