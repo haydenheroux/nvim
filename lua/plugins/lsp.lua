@@ -63,6 +63,7 @@ return {
 				basedpyright = require("lsp.basedpyright"),
 				clangd = require("lsp.clangd"),
 				digestif = require("lsp.digestif"),
+				gopls = require("lsp.gopls"),
 				lua_ls = require("lsp.lua_ls"),
 				r_language_server = require("lsp.r_language_server"),
 			}
