@@ -40,12 +40,6 @@ return {
 				},
 			})
 
-			vim.api.nvim_create_augroup("__formatter__", { clear = true })
-			vim.api.nvim_create_autocmd("BufWritePost", {
-				group = "__formatter__",
-				command = ":FormatWrite",
-			})
-
 			vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
 				callback = function(opts)
 					local ft = vim.bo[opts.buf].filetype
