@@ -84,6 +84,10 @@ return {
 						return vim_item
 					end,
 				},
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
 			})
 
 			-- text: gray
