@@ -78,8 +78,8 @@ return {
 				callback = function(event)
 					local options = { buffer = true, remap = false }
 
-					vim.keymap.set("n", "<leader>[", vim.diagnostic.goto_next, options)
-					vim.keymap.set("n", "<leader>]", vim.diagnostic.goto_prev, options)
+					vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, options)
+					vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, options)
 					vim.keymap.set("n", "<leader>..", vim.lsp.buf.code_action, options)
 					vim.keymap.set("n", "<leader>.f", vim.lsp.buf.format, options)
 					vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, options)
@@ -89,6 +89,7 @@ return {
 					vim.keymap.set("n", "<leader>i", builtin.lsp_implementations, options)
 					vim.keymap.set("n", "<leader>rf", builtin.lsp_references, options)
 					vim.keymap.set("n", "<leader>d", builtin.lsp_definitions, options)
+					vim.keymap.set("n", "<leader>s", builtin.lsp_document_symbols, options)
 				end,
 			})
 		end,
