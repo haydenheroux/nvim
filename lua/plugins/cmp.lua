@@ -107,19 +107,6 @@ return {
 			vim.cmd("highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#A5ADCB")
 			vim.cmd("highlight! CmpItemAbbrMatch guibg=NONE guifg=#7DC4E4")
 			vim.cmd("highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch")
-
-			vim.keymap.set("i", "<C-j>", function()
-				luasnip.jump(1)
-			end)
-			vim.keymap.set("s", "<C-j>", function()
-				luasnip.jump(1)
-			end)
-			vim.keymap.set("i", "<C-k>", function()
-				luasnip.jump(-1)
-			end)
-			vim.keymap.set("s", "<C-k>", function()
-				luasnip.jump(-1)
-			end)
 		end,
 	},
 }

@@ -70,20 +70,43 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				---@diagnostic disable-next-line: unused-local
 				callback = function(event)
-					local options = { buffer = true, remap = false }
-
-					vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, options)
-					vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, options)
-					vim.keymap.set("n", "<leader>..", vim.lsp.buf.code_action, options)
-					vim.keymap.set("n", "<leader>.f", vim.lsp.buf.format, options)
-					vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, options)
-					vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, options)
+					vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { desc = "Jump to next diagnostic" })
+					vim.keymap.set(
+						"n",
+						"<leader>dk",
+						vim.diagnostic.goto_prev,
+						{ desc = "Jump to previous diagnostic" }
+					)
+					vim.keymap.set("n", "<leader>..", vim.lsp.buf.code_action, { desc = "Perform code action" })
+					vim.keymap.set("n", "<leader>.f", ":Format<CR>", { desc = "Format this buffer" })
+					vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, { desc = "Hover the symbol" })
+					vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, { desc = "Rename the symbol" })
 
 					local builtin = require("telescope.builtin")
-					vim.keymap.set("n", "<leader>i", builtin.lsp_implementations, options)
-					vim.keymap.set("n", "<leader>rf", builtin.lsp_references, options)
-					vim.keymap.set("n", "<leader>d", builtin.lsp_definitions, options)
-					vim.keymap.set("n", "<leader>s", builtin.lsp_document_symbols, options)
+					vim.keymap.set(
+						"n",
+						"<leader>i",
+						builtin.lsp_implementations,
+						{ desc = "Jump to the symbol implementations" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>rf",
+						builtin.lsp_references,
+						{ desc = "Jump to the symbol references" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>d",
+						builtin.lsp_definitions,
+						{ desc = "Display the symbol definitions" }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>s",
+						builtin.lsp_document_symbols,
+						{ desc = "Display the buffer symbols" }
+					)
 				end,
 			})
 		end,
@@ -113,7 +136,7 @@ return {
 
 			compact()
 
-			vim.keymap.set("", "<leader>;", toggle)
+			vim.keymap.set("", "<leader>;", toggle, { desc = "Toggle multiline diagnostics" })
 		end,
 	},
 	{
@@ -132,8 +155,19 @@ return {
 						vim.opt.shiftwidth = tabstop
 						vim.opt.softtabstop = tabstop
 						vim.opt.expandtab = true
-						vim.api.nvim_buf_set_keymap(0, "n", "<Enter>", "<Plug>RDSendLine", {})
-						vim.api.nvim_buf_set_keymap(0, "v", "<Enter>", "<Plug>RSendSelection", {})
+						-- NOTE The keymap for starting the R terminal is `<localleader>rf`
+						vim.keymap.set(
+							"n",
+							"<Enter>",
+							"<Plug>RDSendLine",
+							{ desc = "Execute the current line in the R terminal" }
+						)
+						vim.keymap.set(
+							"v",
+							"<Enter>",
+							"<Plug>RSendSelection",
+							{ desc = "Execute the selected lines in the R terminal" }
+						)
 					end,
 				},
 				R_args = { "--quiet", "--no-save" },

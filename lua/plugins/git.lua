@@ -25,17 +25,17 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "<leader>gs", gitsigns.stage_hunk)
-			vim.keymap.set("n", "<leader>gr", gitsigns.reset_hunk)
+			vim.keymap.set("n", "<leader>gs", gitsigns.stage_hunk, { desc = "Stage hunk" })
+			vim.keymap.set("n", "<leader>gr", gitsigns.reset_hunk, { desc = "Reset hunk" })
 			vim.keymap.set("n", "<leader>gj", function()
 				gitsigns.nav_hunk("next")
-			end)
+			end, { desc = "Jump to next hunk" })
 			vim.keymap.set("n", "<leader>gk", function()
 				gitsigns.nav_hunk("prev")
-			end)
+			end, { desc = "Jump to previous hunk" })
 
-			vim.keymap.set("n", "<leader>gS", gitsigns.stage_buffer)
-			vim.keymap.set("n", "<leader>gR", gitsigns.reset_buffer)
+			vim.keymap.set("n", "<leader>gS", gitsigns.stage_buffer, { desc = "Stage entire buffer" })
+			vim.keymap.set("n", "<leader>gR", gitsigns.reset_buffer, { desc = "Reset entire buffer" })
 		end,
 	},
 }

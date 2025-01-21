@@ -21,7 +21,7 @@ return {
 	on_attach = function(basedpyright)
 		vim.keymap.set("n", "<leader>tt", function()
 			toggle_type_checking_mode(basedpyright)
-		end)
+		end, { desc = "Toggle type checking mode for Python files" })
 	end,
 	settings = {
 		basedpyright = {

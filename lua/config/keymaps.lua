@@ -1,18 +1,18 @@
 vim.g.mapleader = " "
 vim.g.localleader = "\\"
 
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>e", vim.cmd.Ex, { desc = "Open file explorer" })
 
-vim.keymap.set("n", "<C-s>", "<C-w>s")
-vim.keymap.set("n", "<C-v>", "<C-w>v")
-vim.keymap.set("n", "<C-c>", vim.cmd.bd)
+vim.keymap.set("n", "<C-s>", "<C-w>s", { desc = "Horizontally split pane" })
+vim.keymap.set("n", "<C-v>", "<C-w>v", { desc = "Vertically split pane" })
+vim.keymap.set("n", "<C-c>", vim.cmd.bd, { desc = "Close buffer" })
 
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move cursor to left pane" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move cursor to below pane" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move cursor to above pane" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move cursor to right pane" })
 
-vim.keymap.set("n", "zj", "]s")
-vim.keymap.set("n", "zk", "[s")
-vim.keymap.set("n", "zi", "zg")
-vim.keymap.set("n", "zc", "z=")
+vim.keymap.set("n", "zj", "]s", { desc = "Jump to next misspelled word" })
+vim.keymap.set("n", "zk", "[s", { desc = "Jump to previous misspelled word" })
+vim.keymap.set("n", "zi", "zg", { desc = "Ignore misspelled word" })
+vim.keymap.set("n", "zc", "z=", { desc = "Correct misspelled word" })
