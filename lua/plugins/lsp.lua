@@ -70,10 +70,10 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				---@diagnostic disable-next-line: unused-local
 				callback = function(event)
-					vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { desc = "Jump to next diagnostic" })
+					vim.keymap.set("n", "<leader>]d", vim.diagnostic.goto_next, { desc = "Jump to next diagnostic" })
 					vim.keymap.set(
 						"n",
-						"<leader>dk",
+						"<leader>[d",
 						vim.diagnostic.goto_prev,
 						{ desc = "Jump to previous diagnostic" }
 					)
