@@ -67,7 +67,7 @@ return {
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
-					{ name = "latex_symbols" },
+					{ name = "latex_symbols", option = { strategy = 1 } },
 					{ name = "vimtex" },
 				},
 				formatting = {
