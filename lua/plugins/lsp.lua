@@ -201,4 +201,7 @@ return {
 		end,
 		config = require("lsp.scala_metals").config,
 	},
+	{
+		"mfussenegger/nvim-jdtls",
+	}
 }
