@@ -37,6 +37,9 @@ return {
 					tex = {
 						require("formatter.filetypes.tex").latexindent,
 					},
+					java = {
+						require("formatter.filetypes.java").google_java_format,
+					},
 				},
 			})
 
@@ -188,20 +191,6 @@ return {
 		end,
 	},
 	{
-		"scalameta/nvim-metals",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		ft = { "scala", "sbt", "java" },
-		opts = function()
-			local metals_config = require("metals").bare_config()
-			metals_config.on_attach = require("lsp.scala_metals").on_attach
-
-			return metals_config
-		end,
-		config = require("lsp.scala_metals").config,
-	},
-	{
 		"mfussenegger/nvim-jdtls",
-	}
+	},
 }
