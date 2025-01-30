@@ -25,6 +25,9 @@ return {
 					go = {
 						require("formatter.filetypes.go").gofmt,
 					},
+					html = {
+						require("formatter.filetypes.html").prettier,
+					},
 					lua = {
 						require("formatter.filetypes.lua").stylua,
 					},
