@@ -113,4 +113,5 @@ return {
 			vim.cmd("highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch")
 		end,
 	},
+	{ "github/copilot.vim" },
 }
