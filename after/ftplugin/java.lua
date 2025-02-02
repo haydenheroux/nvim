@@ -1,4 +1,4 @@
-local workspace_directory = function ()
+local workspace_directory = function()
 	local home = os.getenv("HOME")
 	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 	return home .. "/.local/share/eclipse/" .. project_name
@@ -9,7 +9,7 @@ local language_server_command = function()
 
 	local java = "/usr/lib/jvm/java-21-openjdk/bin/java"
 	local jar = vim.fn.glob("/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")
-    -- TODO This is a hack because the /usr/share/java/ directory is not writable
+	-- TODO This is a hack because the /usr/share/java/ directory is not writable
 	local configuration = home .. "/jdtls/pkg/jdtls/usr/share/java/jdtls/config_linux"
 	local data_directory = workspace_directory()
 
@@ -17,10 +17,13 @@ local language_server_command = function()
 		java,
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 		"-Dosgi.bundles.defaultStartLevel=4",
+		"-Dosgi.sharedConfiguration.area=/usr/share/java/jdtls/config_linux",
+		"-Dosgi.sharedConfiguration.area.readOnly=true",
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
 		"-Dlog.protocol=true",
 		"-Dlog.level=ALL",
-		"-Xmx4g", -- Use 4 gigabytes
+		"-Xms1g",
+		"-Xmx4g",
 		"--add-modules=ALL-SYSTEM",
 		"--add-opens",
 		"java.base/java.util=ALL-UNNAMED",
@@ -28,8 +31,8 @@ local language_server_command = function()
 		"java.base/java.lang=ALL-UNNAMED",
 		"-jar",
 		jar,
-		"-configuration",
-		configuration,
+		--       "-configuration",
+		-- configuration,
 		"-data",
 		data_directory,
 	}
