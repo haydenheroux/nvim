@@ -1,3 +1,32 @@
+local icons = {
+	Text = "",
+	Method = "",
+	Function = "",
+	Constructor = "",
+	Field = "",
+	Variable = "",
+	Class = "",
+	Interface = "",
+	Module = "",
+	Property = "",
+	Unit = "",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "󰏘",
+	File = "󰈙",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
+	Copilot = "",
+}
+
 return {
 	{
 		"hrsh7th/nvim-cmp",
@@ -7,38 +36,12 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"kdheepak/cmp-latex-symbols",
 			"micangl/cmp-vimtex",
+			"onsails/lspkind.nvim",
 		},
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
-
-			local kind_icons = {
-				Text = "",
-				Method = "",
-				Function = "",
-				Constructor = "",
-				Field = "",
-				Variable = "",
-				Class = "",
-				Interface = "",
-				Module = "",
-				Property = "",
-				Unit = "",
-				Value = "",
-				Enum = "",
-				Keyword = "",
-				Snippet = "",
-				Color = "󰏘",
-				File = "󰈙",
-				Reference = "",
-				Folder = "",
-				EnumMember = "",
-				Constant = "",
-				Struct = "",
-				Event = "",
-				Operator = "",
-				TypeParameter = "",
-			}
+			local lspkind = require("lspkind")
 
 			cmp.setup({
 				snippet = {
@@ -69,20 +72,15 @@ return {
 					{ name = "luasnip" },
 					{ name = "latex_symbols", option = { strategy = 1 } },
 					{ name = "vimtex" },
+					{ name = "copilot" },
 				},
 				formatting = {
-					format = function(entry, vim_item)
-						vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
-						vim_item.menu = ({
-							buffer = "[Buffer]",
-							nvim_lsp = "[LSP]",
-							luasnip = "[LuaSnip]",
-							nvim_lua = "[Lua]",
-							latex_symbols = "[LaTeX]",
-							vimtex = vim_item.menu,
-						})[entry.source.name]
-						return vim_item
-					end,
+					format = lspkind.cmp_format({
+						mode = "symbol",
+						ellipsis_char = "…",
+						show_labelDetails = true,
+						symbol_map = icons,
+					}),
 				},
 				window = {
 					completion = cmp.config.window.bordered(),
@@ -111,7 +109,24 @@ return {
 			vim.cmd("highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#A5ADCB")
 			vim.cmd("highlight! CmpItemAbbrMatch guibg=NONE guifg=#7DC4E4")
 			vim.cmd("highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch")
+			vim.cmd("highlight! CmpItemKindCopilot guibg=NONE guifg=#A6dA95")
 		end,
 	},
-	{ "github/copilot.vim" },
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enalbed = false },
+			})
+		end,
+	},
+	{
+		"zbirenbaum/copilot-cmp",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	},
 }
