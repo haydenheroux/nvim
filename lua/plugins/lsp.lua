@@ -43,6 +43,12 @@ return {
 					java = {
 						require("formatter.filetypes.java").google_java_format,
 					},
+					typescript = {
+						require("formatter.filetypes.typescriptreact").prettierd,
+					},
+					typescriptreact = {
+						require("formatter.filetypes.typescriptreact").prettierd,
+					},
 				},
 			})
 
@@ -66,6 +72,8 @@ return {
 				gopls = require("lsp.gopls"),
 				lua_ls = require("lsp.lua_ls"),
 				r_language_server = require("lsp.r_language_server"),
+				ts_ls = require("lsp.ts_ls"),
+				eslint = require("lsp.eslint"),
 			}
 
 			for lsp, config in pairs(configs) do
