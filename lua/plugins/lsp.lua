@@ -63,19 +63,20 @@ return {
 
 			require("mason-lspconfig").setup()
 
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 			local configs = {
 				basedpyright = require("lsp.basedpyright"),
 				clangd = require("lsp.clangd"),
-				digestif = require("lsp.digestif"),
-				gopls = require("lsp.gopls"),
+				digestif = {},
+				eslint = {},
+				gopls = {},
 				lua_ls = require("lsp.lua_ls"),
-				r_language_server = require("lsp.r_language_server"),
-				ts_ls = require("lsp.ts_ls"),
-				eslint = require("lsp.eslint"),
+				r_language_server = {},
+				ts_ls = {},
 			}
 
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			-- NOTE If the language server does not have a config defined in configs, it is not set up
 			for lsp, config in pairs(configs) do
 				config.capabilities = capabilities
 				lspconfig[lsp].setup(config)
