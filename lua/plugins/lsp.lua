@@ -81,49 +81,57 @@ return {
 				config.capabilities = capabilities
 				lspconfig[lsp].setup(config)
 			end
+		end,
+	},
+	{
+		"nvimdev/lspsaga.nvim",
+		event = "LspAttach",
+		config = function()
+            local keys = {
+                tabe = "t",
+                vsplit = "v",
+                split = "s"
+            }
 
-			vim.api.nvim_create_autocmd("LspAttach", {
-				---@diagnostic disable-next-line: unused-local
-				callback = function(event)
-					vim.keymap.set("n", "<leader>]d", vim.diagnostic.goto_next, { desc = "Jump to next diagnostic" })
-					vim.keymap.set(
-						"n",
-						"<leader>[d",
-						vim.diagnostic.goto_prev,
-						{ desc = "Jump to previous diagnostic" }
-					)
-					vim.keymap.set("n", "<leader>..", vim.lsp.buf.code_action, { desc = "Perform code action" })
-					vim.keymap.set("n", "<leader>.f", ":Format<CR>", { desc = "Format this buffer" })
-					vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, { desc = "Hover the symbol" })
-					vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, { desc = "Rename the symbol" })
-
-					local builtin = require("telescope.builtin")
-					vim.keymap.set(
-						"n",
-						"<leader>i",
-						builtin.lsp_implementations,
-						{ desc = "Jump to the symbol implementations" }
-					)
-					vim.keymap.set(
-						"n",
-						"<leader>rf",
-						builtin.lsp_references,
-						{ desc = "Jump to the symbol references" }
-					)
-					vim.keymap.set(
-						"n",
-						"<leader>d",
-						builtin.lsp_definitions,
-						{ desc = "Display the symbol definitions" }
-					)
-					vim.keymap.set(
-						"n",
-						"<leader>s",
-						builtin.lsp_document_symbols,
-						{ desc = "Display the buffer symbols" }
-					)
-				end,
+			require("lspsaga").setup({
+				symbol_in_winbar = {
+					enable = false,
+				},
+				definition = {
+					keys = keys,
+				},
+                finder = {
+                    keys = keys,
+                },
+				rename = {
+					auto_save = true,
+				},
+                beacon = {
+                    enable = false,
+                }
 			})
+
+			vim.keymap.set("n", "<leader>]d", vim.diagnostic.goto_next, { desc = "Jump to next diagnostic" })
+			vim.keymap.set("n", "<leader>[d", vim.diagnostic.goto_prev, { desc = "Jump to previous diagnostic" })
+			vim.keymap.set("n", "<leader>..", "<cmd>Lspsaga code_action<cr>", { desc = "Perform code action" })
+			vim.keymap.set("n", "<leader>.f", "<cmd>Format<cr>", { desc = "Format this buffer" })
+			vim.keymap.set("n", "<leader>h", "<cmd>Lspsaga hover_doc<cr>", { desc = "Hover the symbol" })
+			vim.keymap.set("n", "<leader>r", "<cmd>Lspsaga rename ++project<cr>", { desc = "Rename the symbol" })
+
+			vim.keymap.set("n", "<leader>u", "<cmd>Lspsaga finder<cr>", { desc = "Find usages for the symbol underneath the cursor" })
+			vim.keymap.set(
+				"n",
+				"<leader>d",
+				"<cmd>Lspsaga peek_definition<cr>",
+				{ desc = "View the symbol definition" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>D",
+				"<cmd>Lspsaga goto_definition<cr>",
+				{ desc = "Jump to the symbol definition" }
+			)
+			vim.keymap.set("n", "<leader>s", require("telescope.builtin").lsp_document_symbols, { desc = "Display the buffer symbols" })
 		end,
 	},
 	{
