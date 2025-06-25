@@ -37,6 +37,7 @@ return {
 			"kdheepak/cmp-latex-symbols",
 			"micangl/cmp-vimtex",
 			"onsails/lspkind.nvim",
+			"R-nvim/cmp-r",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -73,6 +74,7 @@ return {
 					{ name = "latex_symbols", option = { strategy = 1 } },
 					{ name = "vimtex" },
 					{ name = "copilot" },
+					{ name = "cmp_r" },
 				},
 				formatting = {
 					format = lspkind.cmp_format({
@@ -87,6 +89,8 @@ return {
 					documentation = cmp.config.window.bordered(),
 				},
 			})
+
+			require("cmp_r").setup({})
 
 			-- text: gray
 			vim.cmd("highlight! CmpItemKindText guibg=NONE guifg=#CAD3F5")
