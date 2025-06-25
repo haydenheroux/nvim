@@ -87,11 +87,12 @@ return {
 		"nvimdev/lspsaga.nvim",
 		event = "LspAttach",
 		config = function()
-            local keys = {
-                tabe = "t",
-                vsplit = "v",
-                split = "s"
-            }
+			local keys = {
+				edit = "<cr>",
+				tabe = "t",
+				vsplit = "v",
+				split = "s",
+			}
 
 			require("lspsaga").setup({
 				symbol_in_winbar = {
@@ -100,15 +101,18 @@ return {
 				definition = {
 					keys = keys,
 				},
-                finder = {
-                    keys = keys,
-                },
+				finder = {
+					keys = keys,
+				},
 				rename = {
 					auto_save = true,
 				},
-                beacon = {
-                    enable = false,
-                }
+				beacon = {
+					enable = false,
+				},
+				lightbulb = {
+					enable = false,
+				},
 			})
 
 			vim.keymap.set("n", "<leader>]d", vim.diagnostic.goto_next, { desc = "Jump to next diagnostic" })
@@ -116,9 +120,14 @@ return {
 			vim.keymap.set("n", "<leader>..", "<cmd>Lspsaga code_action<cr>", { desc = "Perform code action" })
 			vim.keymap.set("n", "<leader>.f", "<cmd>Format<cr>", { desc = "Format this buffer" })
 			vim.keymap.set("n", "<leader>h", "<cmd>Lspsaga hover_doc<cr>", { desc = "Hover the symbol" })
-			vim.keymap.set("n", "<leader>r", "<cmd>Lspsaga rename ++project<cr>", { desc = "Rename the symbol" })
+			vim.keymap.set("n", "<leader>r", "<cmd>Lspsaga rename<cr>", { desc = "Rename the symbol" })
 
-			vim.keymap.set("n", "<leader>u", "<cmd>Lspsaga finder<cr>", { desc = "Find usages for the symbol underneath the cursor" })
+			vim.keymap.set(
+				"n",
+				"<leader>u",
+				"<cmd>Lspsaga finder<cr>",
+				{ desc = "Find usages for the symbol underneath the cursor" }
+			)
 			vim.keymap.set(
 				"n",
 				"<leader>d",
@@ -131,7 +140,12 @@ return {
 				"<cmd>Lspsaga goto_definition<cr>",
 				{ desc = "Jump to the symbol definition" }
 			)
-			vim.keymap.set("n", "<leader>s", require("telescope.builtin").lsp_document_symbols, { desc = "Display the buffer symbols" })
+			vim.keymap.set(
+				"n",
+				"<leader>s",
+				require("telescope.builtin").lsp_document_symbols,
+				{ desc = "Display the buffer symbols" }
+			)
 		end,
 	},
 	{
