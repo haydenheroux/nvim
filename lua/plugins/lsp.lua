@@ -40,7 +40,7 @@ return {
 		event = "LspAttach",
 		config = function()
 			local keys = {
-				edit = "e",
+				edit = "<cr>",
 				-- tabe = "t",
 				vsplit = "v",
 				split = "s",
@@ -63,11 +63,7 @@ return {
 					enable = false,
 				},
 				lightbulb = {
-                    enable = false,
-					sign = false,
-				},
-				ui = {
-					code_action = "",
+					enable = false,
 				},
 			})
 
