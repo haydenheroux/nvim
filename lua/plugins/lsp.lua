@@ -7,7 +7,6 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		config = function()
-			local lspconfig = require("lspconfig")
 			require("mason").setup()
 
 			require("mason-lspconfig").setup()
@@ -30,8 +29,8 @@ return {
 
 			-- NOTE If the language server does not have a config defined in `configs`, it is not set up
 			for lsp, config in pairs(configs) do
-				config.capabilities = capabilities
-				lspconfig[lsp].setup(config)
+                config.capabilities = capabilities
+                vim.lsp.config(lsp, config)
 			end
 		end,
 	},

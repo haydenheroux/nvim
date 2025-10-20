@@ -23,4 +23,8 @@ return {
 			})
 		end,
 	},
+    {
+        "VPavliashvili/json-nvim",
+        ft = "json",
+    }
 }
