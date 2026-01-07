@@ -28,9 +28,10 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			-- NOTE If the language server does not have a config defined in `configs`, it is not set up
-			for lsp, config in pairs(configs) do
-                config.capabilities = capabilities
-                vim.lsp.config(lsp, config)
+			for server, config in pairs(configs) do
+				config.capabilities = capabilities
+				vim.lsp.config[server] = config
+                vim.lsp.enable(server)
 			end
 		end,
 	},
