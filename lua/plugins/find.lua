@@ -8,7 +8,34 @@ return {
 		config = function()
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-			vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "Find files tracked by Git" })
+			local make_entry = require("telescope.make_entry")
+			local conf = require("telescope.config").values
+			vim.keymap.set("n", "<leader>fg", function()
+				local files = vim.fn.systemlist("git ls-files")
+				local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+				if git_root and git_root:match("go/src/merge$") then
+					local ignore_patterns = {
+						"_templ%.go$",
+						"main%.css$",
+					}
+					files = vim.tbl_filter(function(f)
+						for _, pat in ipairs(ignore_patterns) do
+							if f:match(pat) then return false end
+						end
+						return true
+					end, files)
+				end
+				if #files == 0 then return end
+				require("telescope.pickers").new({}, {
+					prompt_title = "Git Files",
+					finder = require("telescope.finders").new_table({
+						results = files,
+						entry_maker = make_entry.gen_from_file({}),
+					}),
+					previewer = conf.file_previewer({}),
+					sorter = conf.generic_sorter({}),
+				}):find()
+			end, { desc = "Find files tracked by Git" })
 			vim.keymap.set("n", "<leader>fs", builtin.live_grep, { desc = "Find string (from prompt)" })
 		end,
 	},

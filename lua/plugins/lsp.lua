@@ -21,8 +21,9 @@ return {
 				gopls = {},
 				lua_ls = require("lsp.lua_ls"),
 				r_language_server = {},
-				ts_ls = {},
 				tailwindcss = {},
+                templ = {},
+				ts_ls = {},
 			}
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
