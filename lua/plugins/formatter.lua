@@ -44,17 +44,4 @@ return {
 			})
 		end,
 	},
-	{
-		"mfussenegger/nvim-lint",
-		config = function()
-			vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
-				callback = function(opts)
-					local ft = vim.bo[opts.buf].filetype
-					if ft == "markdown" or ft == "tex" or ft == "gitcommit" then
-						require("lint").try_lint("write_good")
-					end
-				end,
-			})
-		end,
-	},
 }

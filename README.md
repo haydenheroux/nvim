@@ -33,6 +33,46 @@ Neovim configuration.
 - TODO.md in this directory: breadcrumb + task list for prose linting
   (markdownlint, LanguageTool, tuning the nvim-lint/write-good setup).
 
+## technical writing
+
+Prose linting (via nvim-lint) runs everywhere English is expected:
+
+| tool | role | when it runs |
+| --- | --- | --- |
+| [markdownlint-cli2][mdl] | structural (MD041 title, MD013 line length) | markdown — open/save |
+| [vale][vale] | voice/style (Microsoft/Google/write-good styles) | markdown/tex/text — open/save |
+| [proselint][proselint] | usage nits (weasel, hedging, repetition) | markdown/tex — open/save |
+| [write-good][wg] | light heuristics (passive/weasel/adverbs off) | markdown/tex — open/save |
+| [chktex][chktex] | LaTeX structural warnings | tex — open/save |
+| [typos][typos] | misspellings in code comments/strings | all code fts — open/save |
+| [LanguageTool][lg] | real grammar engine (repetition, missing words) | markdown/plaintex/tex/gitcommit — **save only** |
+
+Markdown and LaTeX get the same prose-linting feature set: vale + proselint +
+write-good + typos always, plus LanguageTool on save (returns real grammar hits
+through TeX control words), with LaTeX adding chktex for structure and Markdown
+adding markdownlint.
+
+**Toggle:** `\lp` (localleader = `\`) hides the prose diagnostics and stops the
+linters from re-running; press it again to restore. Same state is exposed as
+`:lua vim.g.prose_linting_enabled` and `_G.toggle_prose_linting()` /
+`set_prose_linting(bool)`.
+
+- Config lives in `lua/plugins/lint.lua`; PATH + `VALE_CONFIG_PATH` in
+  `lua/config/options.lua`.
+- Binaries: `~/.local/bin` (markdownlint-cli2, proselint, vale, typos, a
+  `languagetool` JRE wrapper), mason (write-good), system (chktex).
+- Vale uses `~/.config/nvim/vale/.vale.ini` (+ synced styles) as the fallback;
+  a project can override by committing its own `.vale.ini`/`styles/`.
+
+[mdl]: https://github.com/DavidAnson/markdownlint-cli2
+[vale]: https://vale.sh
+[proselint]: http://proselint.com
+[wg]: https://github.com/btford/write-good
+[chktex]: https://www.nongnu.org/chktex/
+[typos]: https://github.com/crate-ci/typos
+[lg]: https://languagetool.org
+
+
 ## inspiration
  - [0 to LSP : Neovim RC From Scratch](https://youtu.be/w7i4amO_zaE)
  - [A guide to supercharged mathematical typesetting](https://ejmastnak.com/tutorials/vim-latex/intro/)

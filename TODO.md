@@ -23,33 +23,32 @@ review pass. Recommended checklist lives in the docs repo discussion
 
 ## TODO
 
-- [ ] **Add markdownlint** via nvim-lint (or `markdownlint-cli2` on save)
-      — `MD041`/`MD013` give real signal. Decision needed: repo
-      `sysadmin-docs` wraps prose at ~80 cols; either keep MD013, set
-      `line_length: 80`, or disable MD013 repo-wide in a
-      `.markdownlint.jsonc` committed to `sysadmin-docs`.
-- [ ] **Install LanguageTool** (needs JRE; macOS `brew install
-      languagetool`, Linux needs java + jar). Wire via nvim-lint
-      (`language_tool` has a lint source in nvim-lint) or
-      vim-languagetool. This is the tier that catches actual grammar
-      errors (missing words, agreement, punctuation) that write-good
-      can't.
-- [ ] **Tune or drop write-good** (already configured in
-      `lua/plugins/formatter.lua`). Its passive-voice rule is noise for
-      imperative how-to docs. Options: keep with rules disabled, or
-      replace the `try_lint("write_good")` call for markdown ft with
-      the new tools above.
+- [x] **Add markdownlint** via nvim-lint (`markdownlint-cli2`, installed + wired in
+      `lua/plugins/lint.lua`). `MD041`/`MD013` give real signal. MD013 wraps at the
+      80-col default; if `sysadmin-docs` wants different, drop a
+      `.markdownlint-cli2.yaml` in that repo and markdownlint-cli2 auto-discovers it.
+- [x] **Install LanguageTool** (6.6 standalone jar, `java -jar`; wrapper at
+      `~/.local/bin/languagetool`). Wired via nvim-lint in `lua/plugins/lint.lua`,
+      run **on save only** for plain-prose fts (JVM is slow). Catches actual
+      grammar errors (word repetition, missing words, concise rewrites) that
+      write-good can't.
+- [x] **Tune write-good** (`lua/plugins/lint.lua`): passive/weasel/adverb rules
+      disabled (noise for imperative how-to prose); runs at INFO severity.
+      write-good is now on the fast path alongside proselint/vale/markdownlint.
+- [x] **Other linters added**: `proselint`, `vale` (Microsoft/Google/write-good
+      styles, default at `~/.config/nvim/vale/`), `chktex` (LaTeX structural),
+      and `typos` (misspellings inside code comments across all filetypes).
 - [ ] For `sysadmin-docs` specifically: fix `Acadia VMs` typo
-      ("monitioring"), and wire whatever tools survive into a `make
-      lint` or pre-commit hook in that repo.
-- [ ] Optional: Vale.sh with custom rules if we want *project-specific*
-      voice rules (e.g. enforce "FreeIPA", fqdn hostnames).
+      ("monitioring"), optionally adopt `~/.config/nvim/vale/.vale.ini` + a repo
+      `.vale.ini` for project voice, and wire tools into a `make lint`/
+      pre-commit hook in that repo.
+- [x] **Vale.sh** shipped with Microsoft/Google/write-good styles as the default
+      (project-specific voice rules can override via a repo `.vale.ini`).
 
-## Where to wire things (this config)
+## Where things are wired (this config)
 
-- `lua/plugins/formatter.lua` — nvim-lint config lives here
-  (autocmd already runs `write_good` on markdown/tex/gitcommit)
-- `lua/plugins/lsp.lua` — LSP servers via mason (markdown LSP
-  `marksman`/`mdl` could also be added here; markdownlint-cli2 has a
-  `markdownlint-cli2` LSP-less CLI, so nvim-lint is the easier path)
-- `lua/config/options.lua` — any global defaults
+- `lua/plugins/lint.lua` — the nvim-lint prose-linting setup.
+- `lua/config/options.lua` — PATH (`~/.local/bin`, mason/bin) + `VALE_CONFIG_PATH`.
+- `~/.config/nvim/vale/` — fallback Vale config + synced styles.
+- Binaries: write-good (mason), markdownlint-cli2 + proselint + vale + typos +
+  languagetool wrapper in `~/.local/bin`, chktex (system).
