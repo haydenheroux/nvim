@@ -28,6 +28,11 @@ Neovim configuration.
 | [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) | LSP configuration |
 | [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) | LSP installation |
 
+## todo
+
+- TODO.md in this directory: breadcrumb + task list for prose linting
+  (markdownlint, LanguageTool, tuning the nvim-lint/write-good setup).
+
 ## inspiration
  - [0 to LSP : Neovim RC From Scratch](https://youtu.be/w7i4amO_zaE)
  - [A guide to supercharged mathematical typesetting](https://ejmastnak.com/tutorials/vim-latex/intro/)

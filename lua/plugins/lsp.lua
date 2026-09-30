@@ -152,4 +152,9 @@ return {
 	{
 		"mfussenegger/nvim-jdtls",
 	},
+    {
+      'mrcjkb/rustaceanvim',
+      version = '^9',
+      lazy = false,
+    }
 }

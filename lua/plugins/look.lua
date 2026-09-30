@@ -16,7 +16,7 @@ return {
 		config = function()
 			require("lualine").setup({
 				options = {
-					theme = "catppuccin",
+					theme = "catppuccin-macchiato", -- catppuccin-shipped lualine theme (bundled theme removed from lualine)
 					icons_enabled = true,
 					-- comment these lines to show slants
 					component_separators = "",
