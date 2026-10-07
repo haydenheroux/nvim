@@ -91,8 +91,11 @@ return {
 
 			-- Module-level (not buffer-local) enabled flag so it applies to every buffer
 			-- and the autocmd guards below can check it.
-			local prose_enabled = true
-			vim.g.prose_linting_enabled = true
+			--
+			-- Prose linting is OFF by default: turn it on per-session when you want
+			-- feedback (see `:ProseLint` / <localleader>lp below).
+			local prose_enabled = false
+			vim.g.prose_linting_enabled = false
 
 			-- Fast path: cheap linters on open / save / leaving insert mode.
 			vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
@@ -155,6 +158,17 @@ return {
 
 			vim.keymap.set("n", "<localleader>lp", toggle,
 				{ desc = "Toggle prose linting" })
+
+			-- Explicit commands (default is off, so `:ProseLint` is the main way in).
+			vim.api.nvim_create_user_command("ProseLint", function()
+				set_prose_enabled(true)
+			end, { desc = "Enable prose linting for this session" })
+			vim.api.nvim_create_user_command("ProseLintOff", function()
+				set_prose_enabled(false)
+			end, { desc = "Disable prose linting for this session" })
+			vim.api.nvim_create_user_command("ProseLintToggle", toggle,
+				{ desc = "Toggle prose linting" })
+
 			-- Also expose for `vim`/`:lua` use.
 			_G.toggle_prose_linting = toggle
 			_G.set_prose_linting = set_prose_enabled

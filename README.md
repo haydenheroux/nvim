@@ -52,9 +52,16 @@ write-good + typos always, plus LanguageTool on save (returns real grammar hits
 through TeX control words), with LaTeX adding chktex for structure and Markdown
 adding markdownlint.
 
-**Toggle:** `\lp` (localleader = `\`) hides the prose diagnostics and stops the
-linters from re-running; press it again to restore. Same state is exposed as
-`:lua vim.g.prose_linting_enabled` and `_G.toggle_prose_linting()` /
+**On by demand:** prose linting is **off by default**. Turn it on when you want
+feedback, then off again when you don't:
+
+| control | effect |
+| --- | --- |
+| `:ProseLint` | enable for the session (runs linters on current buffers) |
+| `:ProseLintOff` | disable and clear diagnostics |
+| `:ProseLintToggle` / `\lp` | toggle (localleader = `\`) |
+
+State is exposed as `vim.g.prose_linting_enabled`, `toggle_prose_linting()`, and
 `set_prose_linting(bool)`.
 
 - Config lives in `lua/plugins/lint.lua`; PATH + `VALE_CONFIG_PATH` in
